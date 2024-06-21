@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "881129505514",
+    "project_id": "saexp-hgvvic",
+    "storage_bucket": "saexp-hgvvic.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:881129505514:android:33df108d7e5606d57c0d93",
+        "android_client_info": {
+          "package_name": "com.mycompany.saexp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCz96K31UUcFUwkFZ8p9p5QxqFc29GoSSk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
