@@ -173,7 +173,8 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                                     return FlutterFlowTheme.of(context)
                                         .secondaryBackground;
                                   } else if (widget.selectedNav == 1) {
-                                    return FlutterFlowTheme.of(context).accent1;
+                                    return FlutterFlowTheme.of(context)
+                                        .alternate;
                                   } else {
                                     return FlutterFlowTheme.of(context)
                                         .primaryBackground;
@@ -548,86 +549,6 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                                     ),
                                   ],
                                 ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
-                        child: Text(
-                          'Settings',
-                          style:
-                              FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0.0,
-                                  ),
-                        ),
-                      ),
-                      MouseRegion(
-                        opaque: false,
-                        cursor: MouseCursor.defer ?? MouseCursor.defer,
-                        onEnter: ((event) async {
-                          setState(() => _model.mouseRegionHovered6 = true);
-                        }),
-                        onExit: ((event) async {
-                          setState(() => _model.mouseRegionHovered6 = false);
-                        }),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 0.0, 16.0, 0.0),
-                          child: AnimatedContainer(
-                            duration: const Duration(milliseconds: 350),
-                            curve: Curves.easeIn,
-                            width: double.infinity,
-                            height: 44.0,
-                            decoration: BoxDecoration(
-                              color: () {
-                                if (_model.mouseRegionHovered3) {
-                                  return FlutterFlowTheme.of(context)
-                                      .secondaryBackground;
-                                } else if (widget.selectedNav == 3) {
-                                  return FlutterFlowTheme.of(context).accent1;
-                                } else {
-                                  return FlutterFlowTheme.of(context)
-                                      .primaryBackground;
-                                }
-                              }(),
-                              borderRadius: BorderRadius.circular(12.0),
-                              shape: BoxShape.rectangle,
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  8.0, 0.0, 6.0, 0.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Icon(
-                                    Icons.notifications_rounded,
-                                    color: widget.selectedNav == 3
-                                        ? FlutterFlowTheme.of(context)
-                                            .secondaryBackground
-                                        : FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                    size: 24.0,
-                                  ),
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          12.0, 0.0, 0.0, 0.0),
-                                      child: Text(
-                                        'Change',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              letterSpacing: 0.0,
-                                            ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
                               ),
                             ),
                           ),

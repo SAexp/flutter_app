@@ -8,8 +8,6 @@ export '/student/sport_page_content/sport_page_content_widget.dart'
 export '/student/contact_page/contact_page_widget.dart' show ContactPageWidget;
 export '/web_applivehere/web_event_table/web_event_table_widget.dart'
     show WebEventTableWidget;
-export '/web_applivehere/web_sport_table/web_sport_table_widget.dart'
-    show WebSportTableWidget;
 export '/witingauth/witingauth_widget.dart' show WitingauthWidget;
 export '/suggestion_web_admin/suggestion_web_admin_widget.dart'
     show SuggestionWebAdminWidget;
@@ -24,3 +22,11 @@ export '/web_applivehere/web_news_table/web_news_table_widget.dart'
     show WebNewsTableWidget;
 export '/edittable/edit_event/edit_event_widget.dart' show EditEventWidget;
 export '/edittable/edit_mod/edit_mod_widget.dart' show EditModWidget;
+export '/web_applivehere/web_sport_table/web_sport_table_widget.dart'
+    show WebSportTableWidget;
+export '/edittable/edit_news_page/edit_news_page_widget.dart'
+    show EditNewsPageWidget;
+export '/add/create_news/create_news_widget.dart' show CreateNewsWidget;
+export '/add/create_mod/create_mod_widget.dart' show CreateModWidget;
+export '/add/create_event/create_event_widget.dart' show CreateEventWidget;
+export '/add/create_sport/create_sport_widget.dart' show CreateSportWidget;

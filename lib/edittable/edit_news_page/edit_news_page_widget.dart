@@ -2,39 +2,40 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/upload_data.dart';
 import '/web_applivehere/side_nav/side_nav_widget.dart';
 import 'package:flutter/material.dart';
-import 'edit_mod_model.dart';
-export 'edit_mod_model.dart';
+import 'edit_news_page_model.dart';
+export 'edit_news_page_model.dart';
 
-class EditModWidget extends StatefulWidget {
-  const EditModWidget({
+class EditNewsPageWidget extends StatefulWidget {
+  const EditNewsPageWidget({
     super.key,
-    required this.modData,
+    required this.modNews,
   });
 
-  final ModalitiesRow? modData;
+  final NewsRow? modNews;
 
   @override
-  State<EditModWidget> createState() => _EditModWidgetState();
+  State<EditNewsPageWidget> createState() => _EditNewsPageWidgetState();
 }
 
-class _EditModWidgetState extends State<EditModWidget> {
-  late EditModModel _model;
+class _EditNewsPageWidgetState extends State<EditNewsPageWidget> {
+  late EditNewsPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => EditModModel());
+    _model = createModel(context, () => EditNewsPageModel());
 
     _model.yourNameTextController ??=
-        TextEditingController(text: widget.modData?.modName);
+        TextEditingController(text: widget.modNews?.newsTilte);
     _model.yourNameFocusNode ??= FocusNode();
 
     _model.myBioTextController ??=
-        TextEditingController(text: widget.modData?.modDescription);
+        TextEditingController(text: widget.modNews?.newsDescription);
     _model.myBioFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -78,7 +79,7 @@ class _EditModWidgetState extends State<EditModWidget> {
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 0.0, 0.0),
                           child: Text(
-                            'Update your Modality',
+                            'Update your News',
                             style: FlutterFlowTheme.of(context)
                                 .headlineMedium
                                 .override(
@@ -126,7 +127,7 @@ class _EditModWidgetState extends State<EditModWidget> {
                         textCapitalization: TextCapitalization.words,
                         obscureText: false,
                         decoration: InputDecoration(
-                          labelText: 'Modality Name',
+                          labelText: 'News Name',
                           labelStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
                                     fontFamily: 'Readex Pro',
@@ -180,6 +181,117 @@ class _EditModWidgetState extends State<EditModWidget> {
                       ),
                     ),
                   ),
+                  Align(
+                    alignment: const AlignmentDirectional(-1.0, 1.0),
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 30.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Align(
+                            alignment: const AlignmentDirectional(0.0, 1.0),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 150.0, 0.0, 0.0),
+                              child: FFButtonWidget(
+                                onPressed: () async {
+                                  final selectedMedia = await selectMedia(
+                                    storageFolderPath: 'school',
+                                    mediaSource: MediaSource.photoGallery,
+                                    multiImage: false,
+                                  );
+                                  if (selectedMedia != null &&
+                                      selectedMedia.every((m) =>
+                                          validateFileFormat(
+                                              m.storagePath, context))) {
+                                    setState(
+                                        () => _model.isDataUploading = true);
+                                    var selectedUploadedFiles =
+                                        <FFUploadedFile>[];
+
+                                    var downloadUrls = <String>[];
+                                    try {
+                                      selectedUploadedFiles = selectedMedia
+                                          .map((m) => FFUploadedFile(
+                                                name: m.storagePath
+                                                    .split('/')
+                                                    .last,
+                                                bytes: m.bytes,
+                                                height: m.dimensions?.height,
+                                                width: m.dimensions?.width,
+                                                blurHash: m.blurHash,
+                                              ))
+                                          .toList();
+
+                                      downloadUrls =
+                                          await uploadSupabaseStorageFiles(
+                                        bucketName: 'news_picture',
+                                        selectedFiles: selectedMedia,
+                                      );
+                                    } finally {
+                                      _model.isDataUploading = false;
+                                    }
+                                    if (selectedUploadedFiles.length ==
+                                            selectedMedia.length &&
+                                        downloadUrls.length ==
+                                            selectedMedia.length) {
+                                      setState(() {
+                                        _model.uploadedLocalFile =
+                                            selectedUploadedFiles.first;
+                                        _model.uploadedFileUrl =
+                                            downloadUrls.first;
+                                      });
+                                    } else {
+                                      setState(() {});
+                                      return;
+                                    }
+                                  }
+                                },
+                                text: 'Button',
+                                options: FFButtonOptions(
+                                  height: 40.0,
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      24.0, 0.0, 24.0, 0.0),
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color:
+                                      FlutterFlowTheme.of(context).customGreen,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color: Colors.white,
+                                        letterSpacing: 0.0,
+                                      ),
+                                  elevation: 3.0,
+                                  borderSide: const BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                40.0, 0.0, 0.0, 0.0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: Image.network(
+                                _model.uploadedFileUrl,
+                                width: 300.0,
+                                height: 200.0,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                   SizedBox(
                     height: 200.0,
                     child: Padding(
@@ -191,7 +303,7 @@ class _EditModWidgetState extends State<EditModWidget> {
                         textCapitalization: TextCapitalization.sentences,
                         obscureText: false,
                         decoration: InputDecoration(
-                          labelText: 'Modality information',
+                          labelText: 'News description',
                           labelStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
                                     fontFamily: 'Readex Pro',
@@ -211,7 +323,7 @@ class _EditModWidgetState extends State<EditModWidget> {
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).primary,
+                              color: FlutterFlowTheme.of(context).secondary,
                               width: 2.0,
                             ),
                             borderRadius: BorderRadius.circular(8.0),
@@ -241,7 +353,7 @@ class _EditModWidgetState extends State<EditModWidget> {
                               letterSpacing: 0.0,
                             ),
                         textAlign: TextAlign.start,
-                        maxLines: 10,
+                        maxLines: 40,
                         validator: _model.myBioTextControllerValidator
                             .asValidator(context),
                       ),
@@ -254,15 +366,15 @@ class _EditModWidgetState extends State<EditModWidget> {
                           const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          await ModalitiesTable().update(
+                          await NewsTable().update(
                             data: {
-                              'mod_name': _model.yourNameTextController.text,
-                              'mod_description':
+                              'news_tilte': _model.yourNameTextController.text,
+                              'news_description':
                                   _model.myBioTextController.text,
                             },
                             matchingRows: (rows) => rows.eq(
-                              'mod_id',
-                              widget.modData?.modId,
+                              'news_id',
+                              widget.modNews?.newsId,
                             ),
                           );
                           context.safePop();

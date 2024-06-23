@@ -3,11 +3,11 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'edit_modalities_model.dart';
-export 'edit_modalities_model.dart';
+import 'edit_sport_model.dart';
+export 'edit_sport_model.dart';
 
-class EditModalitiesWidget extends StatefulWidget {
-  const EditModalitiesWidget({
+class EditSportWidget extends StatefulWidget {
+  const EditSportWidget({
     super.key,
     required this.dataMOd,
   });
@@ -15,11 +15,11 @@ class EditModalitiesWidget extends StatefulWidget {
   final ModalitiesRow? dataMOd;
 
   @override
-  State<EditModalitiesWidget> createState() => _EditModalitiesWidgetState();
+  State<EditSportWidget> createState() => _EditSportWidgetState();
 }
 
-class _EditModalitiesWidgetState extends State<EditModalitiesWidget> {
-  late EditModalitiesModel _model;
+class _EditSportWidgetState extends State<EditSportWidget> {
+  late EditSportModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -30,7 +30,7 @@ class _EditModalitiesWidgetState extends State<EditModalitiesWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => EditModalitiesModel());
+    _model = createModel(context, () => EditSportModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }

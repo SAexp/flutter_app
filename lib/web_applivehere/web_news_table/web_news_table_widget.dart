@@ -1,6 +1,7 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import '/components/nothingtoseehere_widget.dart';
+import '/edittable/edit_news/edit_news_widget.dart';
 import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -119,7 +120,7 @@ class _WebNewsTableWidgetState extends State<WebNewsTableWidget> {
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       8.0, 20.0, 0.0, 4.0),
                                   child: Text(
-                                    'School Events',
+                                    'School News',
                                     style: FlutterFlowTheme.of(context)
                                         .headlineMedium
                                         .override(
@@ -136,7 +137,7 @@ class _WebNewsTableWidgetState extends State<WebNewsTableWidget> {
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 0.0, 40.0),
                                   child: Text(
-                                    'Below is where you can place your content.',
+                                    'Add, update or delete News for your students.',
                                     style: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
@@ -151,8 +152,8 @@ class _WebNewsTableWidgetState extends State<WebNewsTableWidget> {
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 20.0, 15.0),
                                     child: FFButtonWidget(
-                                      onPressed: () {
-                                        print('Button pressed ...');
+                                      onPressed: () async {
+                                        context.pushNamed('CreateNews');
                                       },
                                       text: 'Add Data',
                                       options: FFButtonOptions(
@@ -264,7 +265,7 @@ class _WebNewsTableWidgetState extends State<WebNewsTableWidget> {
                                                         ),
                                                       ),
                                                     ),
-                                                    fixedWidth: 300.0,
+                                                    fixedWidth: 650.0,
                                                   ),
                                                   DataColumn2(
                                                     label:
@@ -301,7 +302,7 @@ class _WebNewsTableWidgetState extends State<WebNewsTableWidget> {
                                                             const AlignmentDirectional(
                                                                 0.0, 0.0),
                                                         child: Text(
-                                                          'news views',
+                                                          ' ',
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .labelLarge
@@ -315,25 +316,6 @@ class _WebNewsTableWidgetState extends State<WebNewsTableWidget> {
                                                                     0.0,
                                                               ),
                                                         ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  DataColumn2(
-                                                    label:
-                                                        DefaultTextStyle.merge(
-                                                      softWrap: true,
-                                                      child: Text(
-                                                        'Edit Header 4',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelLarge
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
                                                       ),
                                                     ),
                                                   ),
@@ -408,41 +390,6 @@ class _WebNewsTableWidgetState extends State<WebNewsTableWidget> {
                                                           const AlignmentDirectional(
                                                               1.0, 0.0),
                                                       child:
-                                                          SingleChildScrollView(
-                                                        scrollDirection:
-                                                            Axis.horizontal,
-                                                        child: Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          children: [
-                                                            Align(
-                                                              alignment:
-                                                                  const AlignmentDirectional(
-                                                                      0.0, 0.0),
-                                                              child: Text(
-                                                                'Edit Column 3',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Readex Pro',
-                                                                      fontSize:
-                                                                          12.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Align(
-                                                      alignment:
-                                                          const AlignmentDirectional(
-                                                              1.0, 0.0),
-                                                      child:
                                                           FlutterFlowIconButton(
                                                         borderColor:
                                                             Colors.transparent,
@@ -456,9 +403,42 @@ class _WebNewsTableWidgetState extends State<WebNewsTableWidget> {
                                                               .primaryText,
                                                           size: 24.0,
                                                         ),
-                                                        onPressed: () {
-                                                          print(
-                                                              'IconButton pressed ...');
+                                                        onPressed: () async {
+                                                          await showModalBottomSheet(
+                                                            isScrollControlled:
+                                                                true,
+                                                            backgroundColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            enableDrag: false,
+                                                            context: context,
+                                                            builder: (context) {
+                                                              return GestureDetector(
+                                                                onTap: () => _model
+                                                                        .unfocusNode
+                                                                        .canRequestFocus
+                                                                    ? FocusScope.of(
+                                                                            context)
+                                                                        .requestFocus(_model
+                                                                            .unfocusNode)
+                                                                    : FocusScope.of(
+                                                                            context)
+                                                                        .unfocus(),
+                                                                child: Padding(
+                                                                  padding: MediaQuery
+                                                                      .viewInsetsOf(
+                                                                          context),
+                                                                  child:
+                                                                      EditNewsWidget(
+                                                                    dataNews:
+                                                                        dataEventTableItem,
+                                                                  ),
+                                                                ),
+                                                              );
+                                                            },
+                                                          ).then((value) =>
+                                                              safeSetState(
+                                                                  () {}));
                                                         },
                                                       ),
                                                     ),

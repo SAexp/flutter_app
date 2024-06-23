@@ -128,11 +128,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const WebEventTableWidget(),
         ),
         FFRoute(
-          name: 'web_sport_table',
-          path: '/webSportTable',
-          builder: (context, params) => const WebSportTableWidget(),
-        ),
-        FFRoute(
           name: 'witingauth',
           path: '/witingauth',
           builder: (context, params) => const WitingauthWidget(),
@@ -186,6 +181,41 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.SupabaseRow,
             ),
           ),
+        ),
+        FFRoute(
+          name: 'web_sport_table',
+          path: '/webSportTable',
+          builder: (context, params) => const WebSportTableWidget(),
+        ),
+        FFRoute(
+          name: 'editNews-page',
+          path: '/editNewsPage',
+          builder: (context, params) => EditNewsPageWidget(
+            modNews: params.getParam<NewsRow>(
+              'modNews',
+              ParamType.SupabaseRow,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'CreateNews',
+          path: '/createNews',
+          builder: (context, params) => const CreateNewsWidget(),
+        ),
+        FFRoute(
+          name: 'CreateMod',
+          path: '/createMod',
+          builder: (context, params) => const CreateModWidget(),
+        ),
+        FFRoute(
+          name: 'CreateEvent',
+          path: '/createEvent',
+          builder: (context, params) => const CreateEventWidget(),
+        ),
+        FFRoute(
+          name: 'CreateSport',
+          path: '/createSport',
+          builder: (context, params) => const CreateSportWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -368,14 +398,14 @@ class FFRoute {
                 )
               : builder(context, ffParams);
           final child = appStateNotifier.loading
-              ? const Center(
-                  child: SizedBox(
-                    width: 50.0,
-                    height: 50.0,
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        Color(0xFF3980EF),
-                      ),
+              ? Container(
+                  color: Colors.transparent,
+                  child: Center(
+                    child: Image.asset(
+                      'assets/images/Capture_decran_2024-06-23_a_12.20.42.png',
+                      width: 200.0,
+                      height: 200.0,
+                      fit: BoxFit.contain,
                     ),
                   ),
                 )

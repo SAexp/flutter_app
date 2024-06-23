@@ -9,6 +9,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'school2_model.dart';
 export 'school2_model.dart';
 
@@ -824,64 +825,11 @@ class _School2WidgetState extends State<School2Widget>
                                                                         mainAxisSize:
                                                                             MainAxisSize.max,
                                                                         children: [
-                                                                          Align(
-                                                                            alignment:
-                                                                                const AlignmentDirectional(-1.0, 0.0),
-                                                                            child:
-                                                                                Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
-                                                                              child: Text(
-                                                                                valueOrDefault<String>(
-                                                                                  listViewModalitiesRow.modDescription,
-                                                                                  'desc',
-                                                                                ),
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Readex Pro',
-                                                                                      color: const Color(0xFF1D2427),
-                                                                                      letterSpacing: 0.0,
-                                                                                    ),
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                          Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                                10.0,
-                                                                                0.0,
-                                                                                0.0,
-                                                                                0.0),
-                                                                            child:
-                                                                                Row(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              children: [
-                                                                                Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-                                                                                  child: RichText(
-                                                                                    textScaler: MediaQuery.of(context).textScaler,
-                                                                                    text: TextSpan(
-                                                                                      children: [
-                                                                                        TextSpan(
-                                                                                          text: 'Link name',
-                                                                                          style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                fontFamily: 'Readex Pro',
-                                                                                                color: FlutterFlowTheme.of(context).primary,
-                                                                                                letterSpacing: 0.0,
-                                                                                                fontWeight: FontWeight.bold,
-                                                                                              ),
-                                                                                        ),
-                                                                                        const TextSpan(
-                                                                                          text: ' - url',
-                                                                                          style: TextStyle(),
-                                                                                        )
-                                                                                      ],
-                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                            fontFamily: 'Readex Pro',
-                                                                                            letterSpacing: 0.0,
-                                                                                          ),
-                                                                                    ),
-                                                                                  ),
-                                                                                ),
-                                                                              ].divide(const SizedBox(width: 5.0)),
-                                                                            ),
+                                                                          Html(
+                                                                            data:
+                                                                                listViewModalitiesRow.modDescription!,
+                                                                            onLinkTap: (url, _, __, ___) =>
+                                                                                launchURL(url!),
                                                                           ),
                                                                         ],
                                                                       ),
@@ -1115,12 +1063,13 @@ class _School2WidgetState extends State<School2Widget>
                                                   List<EventUniversityRow>>(
                                                 future: EventUniversityTable()
                                                     .queryRows(
-                                                  queryFn: (q) => q.eq(
-                                                    'ev_university_id',
-                                                    school2StudentsRow
-                                                        ?.stuUniversityId,
-                                                  ),
-                                                  limit: 10,
+                                                  queryFn: (q) => q
+                                                      .eq(
+                                                        'ev_university_id',
+                                                        school2StudentsRow
+                                                            ?.stuUniversityId,
+                                                      )
+                                                      .order('ev_id'),
                                                 ),
                                                 builder: (context, snapshot) {
                                                   // Customize what your widget looks like when it's loading.
@@ -1343,47 +1292,45 @@ class _School2WidgetState extends State<School2Widget>
                                                                                               letterSpacing: 0.0,
                                                                                             ),
                                                                                       ),
+                                                                                      Align(
+                                                                                        alignment: const AlignmentDirectional(1.0, 0.0),
+                                                                                        child: Padding(
+                                                                                          padding: const EdgeInsetsDirectional.fromSTEB(90.0, 0.0, 0.0, 0.0),
+                                                                                          child: Container(
+                                                                                            height: 32.0,
+                                                                                            decoration: BoxDecoration(
+                                                                                              color: Colors.white,
+                                                                                              borderRadius: BorderRadius.circular(12.0),
+                                                                                            ),
+                                                                                            alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                            child: Padding(
+                                                                                              padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                                                                                              child: Text(
+                                                                                                valueOrDefault<String>(
+                                                                                                  formatNumber(
+                                                                                                    listViewEventUniversityRow.evPrice,
+                                                                                                    formatType: FormatType.custom,
+                                                                                                    format: '€',
+                                                                                                    locale: '',
+                                                                                                  ),
+                                                                                                  '0',
+                                                                                                ),
+                                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                      fontFamily: 'Plus Jakarta Sans',
+                                                                                                      color: FlutterFlowTheme.of(context).customGreen,
+                                                                                                      fontSize: 14.0,
+                                                                                                      letterSpacing: 0.0,
+                                                                                                      fontWeight: FontWeight.w900,
+                                                                                                    ),
+                                                                                              ),
+                                                                                            ),
+                                                                                          ),
+                                                                                        ),
+                                                                                      ),
                                                                                     ],
                                                                                   ),
                                                                                 ),
                                                                               ],
-                                                                            ),
-                                                                          ),
-                                                                          Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                                0.0,
-                                                                                14.0,
-                                                                                0.0,
-                                                                                0.0),
-                                                                            child:
-                                                                                Container(
-                                                                              height: 32.0,
-                                                                              decoration: BoxDecoration(
-                                                                                color: Colors.white,
-                                                                                borderRadius: BorderRadius.circular(12.0),
-                                                                              ),
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                              child: Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-                                                                                child: Text(
-                                                                                  valueOrDefault<String>(
-                                                                                    formatNumber(
-                                                                                      listViewEventUniversityRow.evPrice,
-                                                                                      formatType: FormatType.custom,
-                                                                                      format: '€',
-                                                                                      locale: '',
-                                                                                    ),
-                                                                                    '0',
-                                                                                  ),
-                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        fontFamily: 'Plus Jakarta Sans',
-                                                                                        color: FlutterFlowTheme.of(context).customGreen,
-                                                                                        fontSize: 14.0,
-                                                                                        letterSpacing: 0.0,
-                                                                                        fontWeight: FontWeight.w900,
-                                                                                      ),
-                                                                                ),
-                                                                              ),
                                                                             ),
                                                                           ),
                                                                         ],

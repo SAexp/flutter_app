@@ -155,8 +155,8 @@ class _WebModTableWidgetState extends State<WebModTableWidget> {
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 20.0, 15.0),
                                       child: FFButtonWidget(
-                                        onPressed: () {
-                                          print('Button pressed ...');
+                                        onPressed: () async {
+                                          context.pushNamed('CreateMod');
                                         },
                                         text: 'Add Data',
                                         options: FFButtonOptions(
@@ -463,26 +463,20 @@ class _WebModTableWidgetState extends State<WebModTableWidget> {
                                                                     MainAxisSize
                                                                         .max,
                                                                 children: [
-                                                                  Align(
-                                                                    alignment:
-                                                                        const AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0),
-                                                                    child: Text(
-                                                                      rowStudentsRow!
-                                                                          .stuFirstName!,
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Readex Pro',
-                                                                            fontSize:
-                                                                                12.0,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                          ),
-                                                                    ),
+                                                                  Text(
+                                                                    rowStudentsRow!
+                                                                        .stuFirstName!,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Readex Pro',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                        ),
                                                                   ),
                                                                   Padding(
                                                                     padding: const EdgeInsetsDirectional

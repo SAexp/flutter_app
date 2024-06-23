@@ -152,8 +152,8 @@ class _WebEventTableWidgetState extends State<WebEventTableWidget> {
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 20.0, 15.0),
                                     child: FFButtonWidget(
-                                      onPressed: () {
-                                        print('Button pressed ...');
+                                      onPressed: () async {
+                                        context.pushNamed('CreateEvent');
                                       },
                                       text: 'Add Data',
                                       options: FFButtonOptions(

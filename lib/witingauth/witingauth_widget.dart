@@ -39,7 +39,7 @@ class _WitingauthWidgetState extends State<WitingauthWidget> {
         context.goNamed('School2');
       } else {
         if (isWeb) {
-          context.goNamed('web_event_table');
+          context.goNamed('web_dahsboard_table');
         } else {
           context.goNamed('suggestionWebAdmin');
         }

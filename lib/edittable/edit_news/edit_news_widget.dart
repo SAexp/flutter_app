@@ -3,23 +3,23 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'edit_modalities_model.dart';
-export 'edit_modalities_model.dart';
+import 'edit_news_model.dart';
+export 'edit_news_model.dart';
 
-class EditModalitiesWidget extends StatefulWidget {
-  const EditModalitiesWidget({
+class EditNewsWidget extends StatefulWidget {
+  const EditNewsWidget({
     super.key,
-    required this.dataMOd,
+    required this.dataNews,
   });
 
-  final ModalitiesRow? dataMOd;
+  final NewsRow? dataNews;
 
   @override
-  State<EditModalitiesWidget> createState() => _EditModalitiesWidgetState();
+  State<EditNewsWidget> createState() => _EditNewsWidgetState();
 }
 
-class _EditModalitiesWidgetState extends State<EditModalitiesWidget> {
-  late EditModalitiesModel _model;
+class _EditNewsWidgetState extends State<EditNewsWidget> {
+  late EditNewsModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -30,7 +30,7 @@ class _EditModalitiesWidgetState extends State<EditModalitiesWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => EditModalitiesModel());
+    _model = createModel(context, () => EditNewsModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -83,10 +83,10 @@ class _EditModalitiesWidgetState extends State<EditModalitiesWidget> {
                 FFButtonWidget(
                   onPressed: () async {
                     context.pushNamed(
-                      'editMod',
+                      'editNews-page',
                       queryParameters: {
-                        'modData': serializeParam(
-                          widget.dataMOd,
+                        'modNews': serializeParam(
+                          widget.dataNews,
                           ParamType.SupabaseRow,
                         ),
                       }.withoutNulls,
@@ -119,12 +119,11 @@ class _EditModalitiesWidgetState extends State<EditModalitiesWidget> {
                   padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: () async {
-                      _model.deleteRow = await ModalitiesTable().delete(
+                      await NewsTable().delete(
                         matchingRows: (rows) => rows.eq(
-                          'mod_id',
-                          widget.dataMOd?.modId,
+                          'news_id',
+                          widget.dataNews?.newsId,
                         ),
-                        returnRows: true,
                       );
 
                       setState(() {});

@@ -26,9 +26,15 @@ class FFAppState extends ChangeNotifier {
     _date = value;
   }
 
-  String _linkText = '';
-  String get linkText => _linkText;
-  set linkText(String value) {
-    _linkText = value;
+  String _HTMLMessage = '';
+  String get HTMLMessage => _HTMLMessage;
+  set HTMLMessage(String value) {
+    _HTMLMessage = value;
+  }
+
+  String _textFromHtmlEditor = '';
+  String get textFromHtmlEditor => _textFromHtmlEditor;
+  set textFromHtmlEditor(String value) {
+    _textFromHtmlEditor = value;
   }
 }

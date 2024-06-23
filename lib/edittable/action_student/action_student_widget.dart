@@ -3,23 +3,23 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'edit_modalities_model.dart';
-export 'edit_modalities_model.dart';
+import 'action_student_model.dart';
+export 'action_student_model.dart';
 
-class EditModalitiesWidget extends StatefulWidget {
-  const EditModalitiesWidget({
+class ActionStudentWidget extends StatefulWidget {
+  const ActionStudentWidget({
     super.key,
-    required this.dataMOd,
+    required this.dataStudent,
   });
 
-  final ModalitiesRow? dataMOd;
+  final StudentsRow? dataStudent;
 
   @override
-  State<EditModalitiesWidget> createState() => _EditModalitiesWidgetState();
+  State<ActionStudentWidget> createState() => _ActionStudentWidgetState();
 }
 
-class _EditModalitiesWidgetState extends State<EditModalitiesWidget> {
-  late EditModalitiesModel _model;
+class _ActionStudentWidgetState extends State<ActionStudentWidget> {
+  late ActionStudentModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -30,7 +30,7 @@ class _EditModalitiesWidgetState extends State<EditModalitiesWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => EditModalitiesModel());
+    _model = createModel(context, () => ActionStudentModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -81,18 +81,8 @@ class _EditModalitiesWidgetState extends State<EditModalitiesWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 FFButtonWidget(
-                  onPressed: () async {
-                    context.pushNamed(
-                      'editMod',
-                      queryParameters: {
-                        'modData': serializeParam(
-                          widget.dataMOd,
-                          ParamType.SupabaseRow,
-                        ),
-                      }.withoutNulls,
-                    );
-
-                    Navigator.pop(context);
+                  onPressed: () {
+                    print('Button pressed ...');
                   },
                   text: 'Edit Post',
                   options: FFButtonOptions(
@@ -119,12 +109,11 @@ class _EditModalitiesWidgetState extends State<EditModalitiesWidget> {
                   padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: () async {
-                      _model.deleteRow = await ModalitiesTable().delete(
+                      await StudentsTable().delete(
                         matchingRows: (rows) => rows.eq(
-                          'mod_id',
-                          widget.dataMOd?.modId,
+                          'student_id',
+                          widget.dataStudent?.studentId,
                         ),
-                        returnRows: true,
                       );
 
                       setState(() {});

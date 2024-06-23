@@ -452,7 +452,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                         image: DecorationImage(
                           fit: BoxFit.cover,
                           image: Image.network(
-                            'https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1380&q=80',
+                            'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHw1fHxzY2hvb2x8ZW58MHx8fHwxNzE5MTM4MjkxfDA&ixlib=rb-4.0.3&q=80&w=1080',
                           ).image,
                         ),
                         borderRadius: BorderRadius.circular(16.0),
